@@ -16,6 +16,8 @@ import { ProductReveal, ProductRevealProps } from "./components/ProductReveal";
 import { CaptionOverlay, WordCaption } from "./components/CaptionOverlay";
 import { CollageBurst, CollageBurstProps } from "./CollageBurst";
 import { LyricOverlay, LyricOverlayProps } from "./LyricOverlay";
+import { AlphabetSong, AlphabetSongProps } from "./AlphabetSong";
+import { AlphabetThumbnail, AlphabetThumbnailProps } from "./AlphabetThumbnail";
 
 // ---------------------------------------------------------------------------
 // Theme System — prevents every video from looking like dark fintech
@@ -130,6 +132,18 @@ const calculateMetadata: CalculateMetadataFunction<ExplainerProps> = async ({
   const lastEnd = Math.max(...cuts.map((c) => c.out_seconds || 0));
   // Add 1 second padding for final fade
   return { durationInFrames: Math.ceil((lastEnd + 1) * 30) };
+};
+
+const calculateAlphabetMetadata: CalculateMetadataFunction<AlphabetSongProps> = async ({
+  props,
+}) => {
+  const lyrics = props.lyrics || [];
+  if (lyrics.length === 0) {
+    return { durationInFrames: 30 * 150 };
+  }
+  const lastEnd = Math.max(...lyrics.map((l) => l.outSeconds || 0));
+  // 1.2s tail so the final word doesn't cut off abruptly.
+  return { durationInFrames: Math.ceil((lastEnd + 1.2) * 30) };
 };
 
 export const Root: React.FC = () => {
@@ -295,6 +309,31 @@ export const Root: React.FC = () => {
           lyrics: [],
           bottomY: 0.88,
         } as LyricOverlayProps}
+      />
+      <Composition
+        id="AlphabetSong"
+        component={AlphabetSong}
+        durationInFrames={30 * 150}
+        fps={30}
+        width={1920}
+        height={1080}
+        defaultProps={{
+          audioSrc: "",
+          title: "A is for AMAZING!",
+          lyrics: [],
+        } as AlphabetSongProps}
+        calculateMetadata={calculateAlphabetMetadata}
+      />
+      <Composition
+        id="AlphabetThumbnail"
+        component={AlphabetThumbnail}
+        durationInFrames={1}
+        fps={30}
+        width={1280}
+        height={720}
+        defaultProps={{
+          text: "A is for AMAZING!",
+        } as AlphabetThumbnailProps}
       />
       <Composition
         id="EndTag"
