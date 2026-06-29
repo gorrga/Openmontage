@@ -15,7 +15,14 @@ const OUTLINE =
 
 export interface AlphabetThumbnailProps {
   text: string; // e.g. "A is for AMAZING!"
+  hero?: string; // giant character on the right, e.g. "A" or "20"
+  heroColor?: string;
+  blockTokens?: string[]; // scattered background blocks; defaults to A–Z
+  bgTop?: string;
+  bgBottom?: string;
 }
+
+const LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
 function rand(seed: number): number {
   const x = Math.sin(seed * 12.9898 + seed * 78.233) * 43758.5453;
@@ -55,22 +62,30 @@ const Block: React.FC<{ letter: string; color: string; x: number; y: number; siz
   </div>
 );
 
-export const AlphabetThumbnail: React.FC<AlphabetThumbnailProps> = ({ text }) => {
+export const AlphabetThumbnail: React.FC<AlphabetThumbnailProps> = ({
+  text,
+  hero = "A",
+  heroColor = "#FF5A5F",
+  blockTokens,
+  bgTop = "#FFD23F",
+  bgBottom = "#FFB02E",
+}) => {
   const { width, height } = useVideoConfig();
-  const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+  const tokens = blockTokens && blockTokens.length ? blockTokens : LETTERS;
   const scatter = Array.from({ length: 10 }, (_, i) => ({
-    letter: letters[Math.floor(rand(i * 5 + 1) * letters.length)],
+    letter: tokens[Math.floor(rand(i * 5 + 1) * tokens.length)],
     color: PALETTE[i % PALETTE.length],
     x: rand(i * 7 + 2) * (width - 110),
     y: rand(i * 11 + 3) * (height - 110),
     size: 70 + rand(i * 13 + 4) * 40,
     rot: rand(i * 17 + 5) * 40 - 20,
   }));
+  const heroFontSize = hero.length > 1 ? 340 : 460;
 
   return (
     <AbsoluteFill
       style={{
-        background: "linear-gradient(180deg, #FFD23F 0%, #FFB02E 100%)",
+        background: `linear-gradient(180deg, ${bgTop} 0%, ${bgBottom} 100%)`,
       }}
     >
       {/* sunburst */}
@@ -101,37 +116,51 @@ export const AlphabetThumbnail: React.FC<AlphabetThumbnailProps> = ({ text }) =>
         <Block key={i} {...b} />
       ))}
 
-      {/* giant smiling A on the right */}
+      {/* giant smiling hero character on the right */}
       <div style={{ position: "absolute", right: 60, top: 120 }}>
         <div
           style={{
             fontFamily: fredoka,
             fontWeight: 700,
-            fontSize: 460,
-            color: "#FF5A5F",
+            fontSize: heroFontSize,
+            color: heroColor,
             textShadow: OUTLINE,
             lineHeight: 0.9,
             position: "relative",
           }}
         >
-          A
-          {/* eyes */}
-          <div style={{ position: "absolute", left: 150, top: 150, display: "flex", gap: 24 }}>
-            <div style={{ width: 34, height: 34, borderRadius: "50%", background: "#1b2a4a" }} />
-            <div style={{ width: 34, height: 34, borderRadius: "50%", background: "#1b2a4a" }} />
-          </div>
-          {/* smile */}
+          {hero}
+          {/* friendly face — eyes + smile. For multi-char heroes it sits on the
+              last glyph (e.g. the "0" in "20") rather than across the gap. */}
           <div
             style={{
               position: "absolute",
-              left: 150,
-              top: 205,
-              width: 92,
-              height: 46,
-              borderBottomLeftRadius: 92,
-              borderBottomRightRadius: 92,
+              left: 0,
+              right: 0,
+              top: heroFontSize * 0.33,
+              display: "flex",
+              justifyContent: "center",
+              gap: 22,
+              transform: `translateX(${hero.length > 1 ? heroFontSize * 0.27 : 0}px)`,
+            }}
+          >
+            <div style={{ width: 32, height: 32, borderRadius: "50%", background: "#1b2a4a" }} />
+            <div style={{ width: 32, height: 32, borderRadius: "50%", background: "#1b2a4a" }} />
+          </div>
+          <div
+            style={{
+              position: "absolute",
+              left: 0,
+              right: 0,
+              top: heroFontSize * 0.45,
+              margin: "0 auto",
+              width: 84,
+              height: 42,
+              borderBottomLeftRadius: 84,
+              borderBottomRightRadius: 84,
               border: "10px solid #1b2a4a",
               borderTop: "none",
+              transform: `translateX(${hero.length > 1 ? heroFontSize * 0.27 : 0}px)`,
             }}
           />
         </div>

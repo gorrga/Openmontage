@@ -65,7 +65,13 @@ export interface AlphabetSongProps {
   audioSrc: string;
   title?: string;
   lyrics: KidLyric[];
+  /** Tokens shown on the floating background blocks. Defaults to A–Z. */
+  blockTokens?: string[];
+  /** Accent colors for blocks, confetti, and leading words. Defaults to bright primary. */
+  palette?: string[];
 }
+
+const LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
 // ---------------------------------------------------------------------------
 // Background — sky gradient, sun, clouds, rainbow, floating alphabet blocks
@@ -193,16 +199,16 @@ const Rainbow: React.FC = () => {
   );
 };
 
-const FloatingBlocks: React.FC = () => {
+const FloatingBlocks: React.FC<{ tokens: string[]; palette: string[] }> = ({ tokens, palette }) => {
   const frame = useCurrentFrame();
   const { fps, width, height } = useVideoConfig();
-  const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+  const letters = tokens.length ? tokens : LETTERS;
   const count = 11;
   return (
     <AbsoluteFill style={{ pointerEvents: "none" }}>
       {Array.from({ length: count }, (_, i) => {
         const letter = letters[Math.floor(seededRandom(i * 5 + 1) * letters.length)];
-        const color = PALETTE[i % PALETTE.length];
+        const color = palette[i % palette.length];
         const baseX = seededRandom(i * 7 + 2) * (width - 160);
         const baseY = 120 + seededRandom(i * 11 + 3) * (height - 360);
         const bob = Math.sin((frame / fps) * 1.4 + i) * 16;
@@ -228,7 +234,7 @@ const FloatingBlocks: React.FC = () => {
               opacity: 0.42,
               fontFamily: fredoka,
               fontWeight: 700,
-              fontSize: size * 0.6,
+              fontSize: size * (String(letter).length > 1 ? 0.42 : 0.6),
               color: "#fff",
               textShadow: "0 3px 0 rgba(0,0,0,0.18)",
             }}
@@ -241,7 +247,7 @@ const FloatingBlocks: React.FC = () => {
   );
 };
 
-const Background: React.FC = () => {
+const Background: React.FC<{ tokens: string[]; palette: string[] }> = ({ tokens, palette }) => {
   const { height } = useVideoConfig();
   return (
     <AbsoluteFill>
@@ -269,7 +275,7 @@ const Background: React.FC = () => {
       <Cloud seed={1} y={120} scale={1.0} speed={18} />
       <Cloud seed={2} y={300} scale={0.7} speed={12} />
       <Cloud seed={3} y={70} scale={0.55} speed={26} />
-      <FloatingBlocks />
+      <FloatingBlocks tokens={tokens} palette={palette} />
     </AbsoluteFill>
   );
 };
@@ -278,7 +284,7 @@ const Background: React.FC = () => {
 // Confetti — colorful falling bits, boosted during the chorus
 // ---------------------------------------------------------------------------
 
-const Confetti: React.FC<{ boost: number }> = ({ boost }) => {
+const Confetti: React.FC<{ boost: number; palette: string[] }> = ({ boost, palette }) => {
   const frame = useCurrentFrame();
   const { fps, width, height } = useVideoConfig();
   const count = 50;
@@ -287,7 +293,7 @@ const Confetti: React.FC<{ boost: number }> = ({ boost }) => {
     <AbsoluteFill style={{ pointerEvents: "none" }}>
       {Array.from({ length: count }, (_, i) => {
         if (i >= active) return null;
-        const color = PALETTE[i % PALETTE.length];
+        const color = palette[i % palette.length];
         const startX = seededRandom(i * 7 + 1) * width;
         const speed = 70 + seededRandom(i * 3 + 5) * 130;
         const phase = seededRandom(i * 11 + 3) * Math.PI * 2;
@@ -329,7 +335,7 @@ const OUTLINE =
   "-4px -4px 0 #1b2a4a, 4px -4px 0 #1b2a4a, -4px 4px 0 #1b2a4a, 4px 4px 0 #1b2a4a," +
   "0px -5px 0 #1b2a4a, 0px 5px 0 #1b2a4a, -5px 0px 0 #1b2a4a, 5px 0px 0 #1b2a4a";
 
-const LyricLine: React.FC<{ lyric: KidLyric; index: number }> = ({ lyric, index }) => {
+const LyricLine: React.FC<{ lyric: KidLyric; index: number; palette: string[] }> = ({ lyric, index, palette }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const inFrame = lyric.inSeconds * fps;
@@ -347,57 +353,53 @@ const LyricLine: React.FC<{ lyric: KidLyric; index: number }> = ({ lyric, index 
   const fontSize = isChorus ? 132 : isBig ? 96 : 116;
   const lineColor = isChorus ? "#FFE05A" : "#FFFFFF";
 
+  // Whole-line pop-in (native text layout handles spacing/wrapping reliably).
+  const pop = spring({
+    frame: frame - inFrame,
+    fps,
+    config: { damping: 12, stiffness: 170, mass: 0.7 },
+  });
+  const scale = interpolate(pop, [0, 1], [0.55, 1]);
+  const rise = interpolate(pop, [0, 1], [50, 0]);
+  const fadeIn = interpolate(frame, [inFrame - 2, inFrame + 4], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+
+  // Color the leading letter of "X is for ..." lines (alphabet songs).
+  const hasLeadLetter = words.length > 2 && /^[A-Z]$/.test(words[0]);
+  const leadColor = palette[index % palette.length];
+
   return (
     <AbsoluteFill
       style={{
         alignItems: "center",
         justifyContent: "center",
-        opacity: fadeOut,
+        opacity: fadeOut * fadeIn,
         padding: "0 120px",
       }}
     >
       <div
         style={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "center",
-          gap: "0 24px",
-          maxWidth: 1600,
+          fontFamily: fredoka,
+          fontWeight: 700,
+          fontSize,
+          lineHeight: 1.1,
+          color: lineColor,
+          textShadow: OUTLINE,
+          maxWidth: 1640,
           textAlign: "center",
+          transform: `translateY(${rise}px) scale(${scale})`,
         }}
       >
-        {words.map((word, wi) => {
-          const wordDelay = inFrame + wi * 3;
-          const pop = spring({
-            frame: frame - wordDelay,
-            fps,
-            config: { damping: 11, stiffness: 180, mass: 0.7 },
-          });
-          const scale = interpolate(pop, [0, 1], [0.2, 1]);
-          const rise = interpolate(pop, [0, 1], [40, 0]);
-          // Color the leading word of "X is for ..." lines on its first letter.
-          const wordColor =
-            wi === 0 && words.length > 2 && /^[A-Z]$/.test(word)
-              ? PALETTE[index % PALETTE.length]
-              : lineColor;
-          return (
-            <span
-              key={wi}
-              style={{
-                fontFamily: fredoka,
-                fontWeight: 700,
-                fontSize,
-                lineHeight: 1.05,
-                color: wordColor,
-                textShadow: OUTLINE,
-                transform: `translateY(${rise}px) scale(${scale})`,
-                display: "inline-block",
-              }}
-            >
-              {word}
-            </span>
-          );
-        })}
+        {hasLeadLetter ? (
+          <>
+            <span style={{ color: leadColor }}>{words[0]}</span>
+            {" " + words.slice(1).join(" ")}
+          </>
+        ) : (
+          lyric.text
+        )}
       </div>
     </AbsoluteFill>
   );
@@ -443,10 +445,19 @@ const TitleCard: React.FC<{ title: string; until: number }> = ({ title, until })
 // Main composition
 // ---------------------------------------------------------------------------
 
-export const AlphabetSong: React.FC<AlphabetSongProps> = ({ audioSrc, title, lyrics }) => {
+export const AlphabetSong: React.FC<AlphabetSongProps> = ({
+  audioSrc,
+  title,
+  lyrics,
+  blockTokens,
+  palette,
+}) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const tSec = frame / fps;
+
+  const pal = palette && palette.length ? palette : PALETTE;
+  const tokens = blockTokens && blockTokens.length ? blockTokens : LETTERS;
 
   // Chorus boost for confetti — ramps when inside a chorus line.
   const inChorus = lyrics.some(
@@ -459,10 +470,10 @@ export const AlphabetSong: React.FC<AlphabetSongProps> = ({ audioSrc, title, lyr
   return (
     <AbsoluteFill style={{ backgroundColor: "#4FB7F0" }}>
       {audioSrc ? <Audio src={resolveAsset(audioSrc)} /> : null}
-      <Background />
-      <Confetti boost={boost} />
+      <Background tokens={tokens} palette={pal} />
+      <Confetti boost={boost} palette={pal} />
       {lyrics.map((l, i) => (
-        <LyricLine key={i} lyric={l} index={i} />
+        <LyricLine key={i} lyric={l} index={i} palette={pal} />
       ))}
       {title ? <TitleCard title={title} until={Math.max(0.1, firstLyricIn - 0.2)} /> : null}
     </AbsoluteFill>
