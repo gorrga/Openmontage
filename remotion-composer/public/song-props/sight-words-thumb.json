@@ -1,0 +1,19 @@
+{
+  "text": "SIGHT WORDS!",
+  "hero": "the",
+  "heroColor": "#FF5A5F",
+  "bgTop": "#7AD0FF",
+  "bgBottom": "#3BA7E0",
+  "blockTokens": [
+    "I",
+    "the",
+    "a",
+    "is",
+    "it",
+    "in",
+    "on",
+    "can",
+    "see",
+    "we"
+  ]
+}

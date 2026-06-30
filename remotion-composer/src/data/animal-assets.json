@@ -1,0 +1,636 @@
+{
+  "_note": "Curated content manifest from the Cartoon Animal Pack design handoff. Art is emoji-based (no illustration files). Use for animal-themed songs: letter->animal->emoji, palettes, decor sets.",
+  "palettes": {
+    "bright": [
+      "#FF4D5E",
+      "#2E7DFF",
+      "#19B36B",
+      "#FF9F1C",
+      "#8E5BE8",
+      "#FF5DA2",
+      "#13C4C0",
+      "#F4B400"
+    ],
+    "pastel": [
+      "#F58A8A",
+      "#7FB2F5",
+      "#79CDA0",
+      "#F6C173",
+      "#B69BE8",
+      "#F59BC4",
+      "#74CFCB",
+      "#E9C25E"
+    ],
+    "candy": [
+      "#FF6B9D",
+      "#7B6BFF",
+      "#FF8FB1",
+      "#5BC8FF",
+      "#C36BFF",
+      "#FF7A7A",
+      "#56D6B8",
+      "#FFB14E"
+    ]
+  },
+  "alphabet": [
+    {
+      "letter": "A",
+      "name": "Alligator",
+      "emoji": "🐊"
+    },
+    {
+      "letter": "B",
+      "name": "Bear",
+      "emoji": "🐻"
+    },
+    {
+      "letter": "B",
+      "name": "Butterfly",
+      "emoji": "🦋"
+    },
+    {
+      "letter": "C",
+      "name": "Cat",
+      "emoji": "🐱"
+    },
+    {
+      "letter": "C",
+      "name": "Cow",
+      "emoji": "🐮"
+    },
+    {
+      "letter": "D",
+      "name": "Dog",
+      "emoji": "🐶"
+    },
+    {
+      "letter": "E",
+      "name": "Elephant",
+      "emoji": "🐘"
+    },
+    {
+      "letter": "F",
+      "name": "Fox",
+      "emoji": "🦊"
+    },
+    {
+      "letter": "G",
+      "name": "Giraffe",
+      "emoji": "🦒"
+    },
+    {
+      "letter": "H",
+      "name": "Horse",
+      "emoji": "🐴"
+    },
+    {
+      "letter": "I",
+      "name": "Iguana",
+      "emoji": "🦎"
+    },
+    {
+      "letter": "J",
+      "name": "Jellyfish",
+      "emoji": "🪼"
+    },
+    {
+      "letter": "K",
+      "name": "Koala",
+      "emoji": "🐨"
+    },
+    {
+      "letter": "K",
+      "name": "Kangaroo",
+      "emoji": "🦘"
+    },
+    {
+      "letter": "L",
+      "name": "Lion",
+      "emoji": "🦁"
+    },
+    {
+      "letter": "M",
+      "name": "Monkey",
+      "emoji": "🐵"
+    },
+    {
+      "letter": "N",
+      "name": "Nightingale",
+      "emoji": "🐦"
+    },
+    {
+      "letter": "O",
+      "name": "Owl",
+      "emoji": "🦉"
+    },
+    {
+      "letter": "O",
+      "name": "Octopus",
+      "emoji": "🐙"
+    },
+    {
+      "letter": "P",
+      "name": "Penguin",
+      "emoji": "🐧"
+    },
+    {
+      "letter": "Q",
+      "name": "Queen Bee",
+      "emoji": "🐝"
+    },
+    {
+      "letter": "R",
+      "name": "Rabbit",
+      "emoji": "🐰"
+    },
+    {
+      "letter": "S",
+      "name": "Snake",
+      "emoji": "🐍"
+    },
+    {
+      "letter": "T",
+      "name": "Tiger",
+      "emoji": "🐯"
+    },
+    {
+      "letter": "T",
+      "name": "Turtle",
+      "emoji": "🐢"
+    },
+    {
+      "letter": "U",
+      "name": "Unicorn",
+      "emoji": "🦄"
+    },
+    {
+      "letter": "V",
+      "name": "Vulture",
+      "emoji": "🦅"
+    },
+    {
+      "letter": "W",
+      "name": "Whale",
+      "emoji": "🐳"
+    },
+    {
+      "letter": "X",
+      "name": "X-ray Fish",
+      "emoji": "🐠"
+    },
+    {
+      "letter": "Y",
+      "name": "Yak",
+      "emoji": "🐂"
+    },
+    {
+      "letter": "Z",
+      "name": "Zebra",
+      "emoji": "🦓"
+    }
+  ],
+  "megaPack": [
+    {
+      "name": "Dog",
+      "emoji": "🐕"
+    },
+    {
+      "name": "Cat",
+      "emoji": "🐈"
+    },
+    {
+      "name": "Poodle",
+      "emoji": "🐩"
+    },
+    {
+      "name": "Black Cat",
+      "emoji": "🐈‍⬛"
+    },
+    {
+      "name": "Tiger",
+      "emoji": "🐅"
+    },
+    {
+      "name": "Leopard",
+      "emoji": "🐆"
+    },
+    {
+      "name": "Lion",
+      "emoji": "🦁"
+    },
+    {
+      "name": "Horse",
+      "emoji": "🐎"
+    },
+    {
+      "name": "Unicorn",
+      "emoji": "🦄"
+    },
+    {
+      "name": "Zebra",
+      "emoji": "🦓"
+    },
+    {
+      "name": "Deer",
+      "emoji": "🦌"
+    },
+    {
+      "name": "Bison",
+      "emoji": "🦬"
+    },
+    {
+      "name": "Ox",
+      "emoji": "🐂"
+    },
+    {
+      "name": "Buffalo",
+      "emoji": "🐃"
+    },
+    {
+      "name": "Cow",
+      "emoji": "🐄"
+    },
+    {
+      "name": "Pig",
+      "emoji": "🐖"
+    },
+    {
+      "name": "Boar",
+      "emoji": "🐗"
+    },
+    {
+      "name": "Ram",
+      "emoji": "🐏"
+    },
+    {
+      "name": "Sheep",
+      "emoji": "🐑"
+    },
+    {
+      "name": "Goat",
+      "emoji": "🐐"
+    },
+    {
+      "name": "Camel",
+      "emoji": "🐪"
+    },
+    {
+      "name": "Big Camel",
+      "emoji": "🐫"
+    },
+    {
+      "name": "Llama",
+      "emoji": "🦙"
+    },
+    {
+      "name": "Giraffe",
+      "emoji": "🦒"
+    },
+    {
+      "name": "Elephant",
+      "emoji": "🐘"
+    },
+    {
+      "name": "Mammoth",
+      "emoji": "🦣"
+    },
+    {
+      "name": "Rhino",
+      "emoji": "🦏"
+    },
+    {
+      "name": "Hippo",
+      "emoji": "🦛"
+    },
+    {
+      "name": "Mouse",
+      "emoji": "🐁"
+    },
+    {
+      "name": "Rat",
+      "emoji": "🐀"
+    },
+    {
+      "name": "Hamster",
+      "emoji": "🐹"
+    },
+    {
+      "name": "Rabbit",
+      "emoji": "🐇"
+    },
+    {
+      "name": "Chipmunk",
+      "emoji": "🐿️"
+    },
+    {
+      "name": "Beaver",
+      "emoji": "🦫"
+    },
+    {
+      "name": "Hedgehog",
+      "emoji": "🦔"
+    },
+    {
+      "name": "Bat",
+      "emoji": "🦇"
+    },
+    {
+      "name": "Bear",
+      "emoji": "🐻"
+    },
+    {
+      "name": "Polar Bear",
+      "emoji": "🐻‍❄️"
+    },
+    {
+      "name": "Koala",
+      "emoji": "🐨"
+    },
+    {
+      "name": "Panda",
+      "emoji": "🐼"
+    },
+    {
+      "name": "Sloth",
+      "emoji": "🦥"
+    },
+    {
+      "name": "Otter",
+      "emoji": "🦦"
+    },
+    {
+      "name": "Skunk",
+      "emoji": "🦨"
+    },
+    {
+      "name": "Kangaroo",
+      "emoji": "🦘"
+    },
+    {
+      "name": "Badger",
+      "emoji": "🦡"
+    },
+    {
+      "name": "Gorilla",
+      "emoji": "🦍"
+    },
+    {
+      "name": "Orangutan",
+      "emoji": "🦧"
+    },
+    {
+      "name": "Monkey",
+      "emoji": "🐒"
+    },
+    {
+      "name": "Chicken",
+      "emoji": "🐔"
+    },
+    {
+      "name": "Rooster",
+      "emoji": "🐓"
+    },
+    {
+      "name": "Chick",
+      "emoji": "🐤"
+    },
+    {
+      "name": "Turkey",
+      "emoji": "🦃"
+    },
+    {
+      "name": "Penguin",
+      "emoji": "🐧"
+    },
+    {
+      "name": "Dove",
+      "emoji": "🕊️"
+    },
+    {
+      "name": "Eagle",
+      "emoji": "🦅"
+    },
+    {
+      "name": "Duck",
+      "emoji": "🦆"
+    },
+    {
+      "name": "Goose",
+      "emoji": "🪿"
+    },
+    {
+      "name": "Swan",
+      "emoji": "🦢"
+    },
+    {
+      "name": "Owl",
+      "emoji": "🦉"
+    },
+    {
+      "name": "Dodo",
+      "emoji": "🦤"
+    },
+    {
+      "name": "Flamingo",
+      "emoji": "🦩"
+    },
+    {
+      "name": "Peacock",
+      "emoji": "🦚"
+    },
+    {
+      "name": "Parrot",
+      "emoji": "🦜"
+    },
+    {
+      "name": "Bird",
+      "emoji": "🐦"
+    },
+    {
+      "name": "Blackbird",
+      "emoji": "🐦‍⬛"
+    },
+    {
+      "name": "Frog",
+      "emoji": "🐸"
+    },
+    {
+      "name": "Crocodile",
+      "emoji": "🐊"
+    },
+    {
+      "name": "Turtle",
+      "emoji": "🐢"
+    },
+    {
+      "name": "Lizard",
+      "emoji": "🦎"
+    },
+    {
+      "name": "Snake",
+      "emoji": "🐍"
+    },
+    {
+      "name": "Dragon",
+      "emoji": "🐉"
+    },
+    {
+      "name": "Baby Dragon",
+      "emoji": "🐲"
+    },
+    {
+      "name": "Dinosaur",
+      "emoji": "🦕"
+    },
+    {
+      "name": "T-Rex",
+      "emoji": "🦖"
+    },
+    {
+      "name": "Whale",
+      "emoji": "🐳"
+    },
+    {
+      "name": "Big Whale",
+      "emoji": "🐋"
+    },
+    {
+      "name": "Dolphin",
+      "emoji": "🐬"
+    },
+    {
+      "name": "Seal",
+      "emoji": "🦭"
+    },
+    {
+      "name": "Fish",
+      "emoji": "🐟"
+    },
+    {
+      "name": "Tropical Fish",
+      "emoji": "🐠"
+    },
+    {
+      "name": "Pufferfish",
+      "emoji": "🐡"
+    },
+    {
+      "name": "Shark",
+      "emoji": "🦈"
+    },
+    {
+      "name": "Octopus",
+      "emoji": "🐙"
+    },
+    {
+      "name": "Squid",
+      "emoji": "🦑"
+    },
+    {
+      "name": "Jellyfish",
+      "emoji": "🪼"
+    },
+    {
+      "name": "Shrimp",
+      "emoji": "🦐"
+    },
+    {
+      "name": "Lobster",
+      "emoji": "🦞"
+    },
+    {
+      "name": "Crab",
+      "emoji": "🦀"
+    },
+    {
+      "name": "Snail",
+      "emoji": "🐌"
+    },
+    {
+      "name": "Butterfly",
+      "emoji": "🦋"
+    },
+    {
+      "name": "Caterpillar",
+      "emoji": "🐛"
+    },
+    {
+      "name": "Ant",
+      "emoji": "🐜"
+    },
+    {
+      "name": "Bee",
+      "emoji": "🐝"
+    },
+    {
+      "name": "Beetle",
+      "emoji": "🪲"
+    },
+    {
+      "name": "Ladybug",
+      "emoji": "🐞"
+    },
+    {
+      "name": "Cricket",
+      "emoji": "🦗"
+    },
+    {
+      "name": "Spider",
+      "emoji": "🕷️"
+    },
+    {
+      "name": "Scorpion",
+      "emoji": "🦂"
+    },
+    {
+      "name": "Mosquito",
+      "emoji": "🦟"
+    },
+    {
+      "name": "Worm",
+      "emoji": "🪱"
+    }
+  ],
+  "animatedLoops": [
+    {
+      "name": "Dog",
+      "emoji": "🐕"
+    },
+    {
+      "name": "Cat",
+      "emoji": "🐈"
+    },
+    {
+      "name": "Turtle",
+      "emoji": "🐢"
+    },
+    {
+      "name": "Elephant",
+      "emoji": "🐘"
+    },
+    {
+      "name": "Penguin",
+      "emoji": "🐧"
+    },
+    {
+      "name": "Kangaroo",
+      "emoji": "🦘"
+    },
+    {
+      "name": "Giraffe",
+      "emoji": "🦒"
+    },
+    {
+      "name": "Sloth",
+      "emoji": "🦥"
+    },
+    {
+      "name": "Dinosaur",
+      "emoji": "🦕"
+    },
+    {
+      "name": "Parrot",
+      "emoji": "🦜"
+    }
+  ]
+}

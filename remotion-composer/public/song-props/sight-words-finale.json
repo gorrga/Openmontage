@@ -1,0 +1,155 @@
+{
+  "audioSrc": "song/sight-words.mp3",
+  "title": "",
+  "lyrics": [
+    {
+      "text": "Sight words, sight words, we know them by sight! Read them fast, read them right! Let's go!",
+      "inSeconds": 0.5,
+      "outSeconds": 10.91,
+      "section": "intro"
+    },
+    {
+      "text": "I - I am me! The - the one and only!",
+      "inSeconds": 10.91,
+      "outSeconds": 17.65,
+      "section": "verse"
+    },
+    {
+      "text": "A - just one letter! Is - it is a great day!",
+      "inSeconds": 17.65,
+      "outSeconds": 25.0,
+      "section": "verse"
+    },
+    {
+      "text": "I, the, a, is! I, the, a, is!",
+      "inSeconds": 25.0,
+      "outSeconds": 29.77,
+      "section": "chorus"
+    },
+    {
+      "text": "Say those sight words, can't dismiss!",
+      "inSeconds": 29.77,
+      "outSeconds": 33.34,
+      "section": "chorus"
+    },
+    {
+      "text": "It, in, on, can - four more today!",
+      "inSeconds": 33.34,
+      "outSeconds": 38.11,
+      "section": "chorus"
+    },
+    {
+      "text": "See and we - hip hip hooray!",
+      "inSeconds": 38.11,
+      "outSeconds": 42.28,
+      "section": "chorus"
+    },
+    {
+      "text": "It - it's so easy! In - jump in!",
+      "inSeconds": 42.28,
+      "outSeconds": 47.64,
+      "section": "verse"
+    },
+    {
+      "text": "On - climb on! Can - yes I can!",
+      "inSeconds": 47.64,
+      "outSeconds": 53.0,
+      "section": "verse"
+    },
+    {
+      "text": "I, the, a, is! I, the, a, is!",
+      "inSeconds": 53.0,
+      "outSeconds": 57.69,
+      "section": "chorus"
+    },
+    {
+      "text": "Say those sight words, can't dismiss!",
+      "inSeconds": 57.69,
+      "outSeconds": 61.21,
+      "section": "chorus"
+    },
+    {
+      "text": "It, in, on, can - four more today!",
+      "inSeconds": 61.21,
+      "outSeconds": 65.9,
+      "section": "chorus"
+    },
+    {
+      "text": "See and we - hip hip hooray!",
+      "inSeconds": 65.9,
+      "outSeconds": 70.0,
+      "section": "chorus"
+    },
+    {
+      "text": "See - I see you! We - we're a team!",
+      "inSeconds": 70.0,
+      "outSeconds": 83.11,
+      "section": "verse"
+    },
+    {
+      "text": "Ten sight words, do you know what that means?",
+      "inSeconds": 83.11,
+      "outSeconds": 94.91,
+      "section": "verse"
+    },
+    {
+      "text": "You're a reader! You're a star!",
+      "inSeconds": 94.91,
+      "outSeconds": 102.78,
+      "section": "verse"
+    },
+    {
+      "text": "Look how amazing you already are!",
+      "inSeconds": 102.78,
+      "outSeconds": 110.64,
+      "section": "verse"
+    },
+    {
+      "text": "Fast round, ready? I! The! A! Is! It! In! On! Can! See! We!",
+      "inSeconds": 110.64,
+      "outSeconds": 127.68,
+      "section": "outro"
+    },
+    {
+      "text": "Again, faster! I! The! A! Is! It! In! On! Can! See! We!",
+      "inSeconds": 127.68,
+      "outSeconds": 143.42,
+      "section": "outro"
+    },
+    {
+      "text": "You did it!",
+      "inSeconds": 143.42,
+      "outSeconds": 147.35,
+      "section": "outro"
+    }
+  ],
+  "blockTokens": [
+    "I",
+    "the",
+    "a",
+    "is",
+    "it",
+    "in",
+    "on",
+    "can",
+    "see",
+    "we"
+  ],
+  "cardStyle": true,
+  "decor": [
+    "\ud83e\udd81",
+    "\ud83d\udc36",
+    "\ud83d\udc31",
+    "\ud83d\udc38",
+    "\ud83d\udc35",
+    "\ud83d\udc30",
+    "\u2b50",
+    "\ud83c\udf88",
+    "\ud83c\udf08",
+    "\ud83c\udf4e",
+    "\ud83d\ude80",
+    "\ud83d\udc25"
+  ],
+  "hook": "Sight Word Speed Round! \u26a1",
+  "endCardAt": 144.8
+}

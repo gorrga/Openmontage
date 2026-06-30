@@ -1,0 +1,266 @@
+{
+  "audioSrc": "song/a-is-for-amazing.mp3",
+  "title": "",
+  "lyrics": [
+    {
+      "text": "Hey friends! Are you ready to learn your letters?",
+      "inSeconds": 0.6,
+      "outSeconds": 5.17,
+      "section": "intro"
+    },
+    {
+      "text": "Let's move, let's sing, let's go!",
+      "inSeconds": 5.17,
+      "outSeconds": 8.21,
+      "section": "intro"
+    },
+    {
+      "text": "A is for amazing, let's stomp our feet!",
+      "inSeconds": 8.21,
+      "outSeconds": 12.28,
+      "section": "verse"
+    },
+    {
+      "text": "B is for bouncing, feel the beat!",
+      "inSeconds": 12.28,
+      "outSeconds": 15.83,
+      "section": "verse"
+    },
+    {
+      "text": "C is for clapping, clap along!",
+      "inSeconds": 15.83,
+      "outSeconds": 18.88,
+      "section": "verse"
+    },
+    {
+      "text": "D is for dancing to this song!",
+      "inSeconds": 18.88,
+      "outSeconds": 22.43,
+      "section": "verse"
+    },
+    {
+      "text": "A B C D E F G!",
+      "inSeconds": 22.43,
+      "outSeconds": 25.98,
+      "section": "chorus"
+    },
+    {
+      "text": "Every letter is a friend to me!",
+      "inSeconds": 25.98,
+      "outSeconds": 29.54,
+      "section": "chorus"
+    },
+    {
+      "text": "H I J K L M N!",
+      "inSeconds": 29.54,
+      "outSeconds": 33.09,
+      "section": "chorus"
+    },
+    {
+      "text": "Sing it loud and sing it again!",
+      "inSeconds": 33.09,
+      "outSeconds": 36.64,
+      "section": "chorus"
+    },
+    {
+      "text": "O P Q R S T U!",
+      "inSeconds": 36.64,
+      "outSeconds": 40.2,
+      "section": "chorus"
+    },
+    {
+      "text": "I love learning, how about you?",
+      "inSeconds": 40.2,
+      "outSeconds": 43.24,
+      "section": "chorus"
+    },
+    {
+      "text": "V W X Y Z!",
+      "inSeconds": 43.24,
+      "outSeconds": 45.78,
+      "section": "chorus"
+    },
+    {
+      "text": "We know our ABCs, yes we do!",
+      "inSeconds": 45.78,
+      "outSeconds": 49.33,
+      "section": "chorus"
+    },
+    {
+      "text": "E is for excited, jump up high!",
+      "inSeconds": 49.33,
+      "outSeconds": 52.89,
+      "section": "verse"
+    },
+    {
+      "text": "F is for flying, touch the sky!",
+      "inSeconds": 52.89,
+      "outSeconds": 56.44,
+      "section": "verse"
+    },
+    {
+      "text": "G is for giggling, hee hee hee!",
+      "inSeconds": 56.44,
+      "outSeconds": 60.0,
+      "section": "verse"
+    },
+    {
+      "text": "H is for happy, just like me!",
+      "inSeconds": 60.0,
+      "outSeconds": 63.55,
+      "section": "verse"
+    },
+    {
+      "text": "A B C D E F G!",
+      "inSeconds": 63.55,
+      "outSeconds": 67.1,
+      "section": "chorus"
+    },
+    {
+      "text": "Every letter is a friend to me!",
+      "inSeconds": 67.1,
+      "outSeconds": 70.66,
+      "section": "chorus"
+    },
+    {
+      "text": "H I J K L M N!",
+      "inSeconds": 70.66,
+      "outSeconds": 74.21,
+      "section": "chorus"
+    },
+    {
+      "text": "Sing it loud and sing it again!",
+      "inSeconds": 74.21,
+      "outSeconds": 77.76,
+      "section": "chorus"
+    },
+    {
+      "text": "O P Q R S T U!",
+      "inSeconds": 77.76,
+      "outSeconds": 81.32,
+      "section": "chorus"
+    },
+    {
+      "text": "I love learning, how about you?",
+      "inSeconds": 81.32,
+      "outSeconds": 84.36,
+      "section": "chorus"
+    },
+    {
+      "text": "V W X Y Z!",
+      "inSeconds": 84.36,
+      "outSeconds": 86.9,
+      "section": "chorus"
+    },
+    {
+      "text": "We know our ABCs, yes we do!",
+      "inSeconds": 86.9,
+      "outSeconds": 90.45,
+      "section": "chorus"
+    },
+    {
+      "text": "I is for incredible, that is you!",
+      "inSeconds": 90.45,
+      "outSeconds": 94.01,
+      "section": "verse"
+    },
+    {
+      "text": "J is for jumping, jump jump jump!",
+      "inSeconds": 94.01,
+      "outSeconds": 97.56,
+      "section": "verse"
+    },
+    {
+      "text": "K is for kicking, kick kick kick!",
+      "inSeconds": 97.56,
+      "outSeconds": 101.12,
+      "section": "verse"
+    },
+    {
+      "text": "L is for leaping, leap leap leap!",
+      "inSeconds": 101.12,
+      "outSeconds": 104.67,
+      "section": "verse"
+    },
+    {
+      "text": "A B C D E F G!",
+      "inSeconds": 104.67,
+      "outSeconds": 108.22,
+      "section": "chorus"
+    },
+    {
+      "text": "Every letter is a friend to me!",
+      "inSeconds": 108.22,
+      "outSeconds": 111.78,
+      "section": "chorus"
+    },
+    {
+      "text": "H I J K L M N!",
+      "inSeconds": 111.78,
+      "outSeconds": 115.33,
+      "section": "chorus"
+    },
+    {
+      "text": "Sing it loud and sing it again!",
+      "inSeconds": 115.33,
+      "outSeconds": 118.88,
+      "section": "chorus"
+    },
+    {
+      "text": "O P Q R S T U!",
+      "inSeconds": 118.88,
+      "outSeconds": 122.44,
+      "section": "chorus"
+    },
+    {
+      "text": "I love learning, how about you?",
+      "inSeconds": 122.44,
+      "outSeconds": 125.48,
+      "section": "chorus"
+    },
+    {
+      "text": "V W X Y Z!",
+      "inSeconds": 125.48,
+      "outSeconds": 128.02,
+      "section": "chorus"
+    },
+    {
+      "text": "We know our ABCs, yes we do!",
+      "inSeconds": 128.02,
+      "outSeconds": 131.57,
+      "section": "chorus"
+    },
+    {
+      "text": "We know our letters A through Z!",
+      "inSeconds": 131.57,
+      "outSeconds": 135.13,
+      "section": "outro"
+    },
+    {
+      "text": "Learning is so fun, don't you agree?",
+      "inSeconds": 135.13,
+      "outSeconds": 138.68,
+      "section": "outro"
+    },
+    {
+      "text": "Let's say them one more time!",
+      "inSeconds": 138.68,
+      "outSeconds": 141.73,
+      "section": "outro"
+    },
+    {
+      "text": "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z!",
+      "inSeconds": 141.73,
+      "outSeconds": 154.93,
+      "section": "outro"
+    },
+    {
+      "text": "Amazing!",
+      "inSeconds": 154.93,
+      "outSeconds": 156.45,
+      "section": "outro"
+    }
+  ],
+  "hook": "Can you sing A to Z? \ud83d\udd24",
+  "endCardAt": 154.0
+}

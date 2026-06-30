@@ -1,0 +1,182 @@
+{
+  "audioSrc": "song/count-to-20.mp3",
+  "title": "",
+  "lyrics": [
+    {
+      "text": "Put on your cape, it's time to count! Superheroes ready? Let's shout it out!",
+      "inSeconds": 0.5,
+      "outSeconds": 5.4,
+      "section": "intro"
+    },
+    {
+      "text": "ONE! Superhero pose! TWO! Flex those muscles!",
+      "inSeconds": 5.4,
+      "outSeconds": 9.54,
+      "section": "verse"
+    },
+    {
+      "text": "THREE! Fly through the air! FOUR! Land with a boom!",
+      "inSeconds": 9.54,
+      "outSeconds": 15.45,
+      "section": "verse"
+    },
+    {
+      "text": "FIVE! High five, you're halfway there!",
+      "inSeconds": 15.45,
+      "outSeconds": 19.0,
+      "section": "verse"
+    },
+    {
+      "text": "Count like a superhero, 1 2 3!",
+      "inSeconds": 19.0,
+      "outSeconds": 23.2,
+      "section": "chorus"
+    },
+    {
+      "text": "Count like a superhero, strong and free!",
+      "inSeconds": 23.2,
+      "outSeconds": 27.4,
+      "section": "chorus"
+    },
+    {
+      "text": "4 5 6 7 8 9 10!",
+      "inSeconds": 27.4,
+      "outSeconds": 31.6,
+      "section": "chorus"
+    },
+    {
+      "text": "Superheroes, let's count again!",
+      "inSeconds": 31.6,
+      "outSeconds": 34.0,
+      "section": "chorus"
+    },
+    {
+      "text": "SIX! Spin around! SEVEN! Jump up high!",
+      "inSeconds": 34.0,
+      "outSeconds": 41.0,
+      "section": "verse"
+    },
+    {
+      "text": "EIGHT! Reach for the sky! NINE! Stomp the ground!",
+      "inSeconds": 41.0,
+      "outSeconds": 50.0,
+      "section": "verse"
+    },
+    {
+      "text": "TEN! Ka-pow!",
+      "inSeconds": 50.0,
+      "outSeconds": 53.0,
+      "section": "verse"
+    },
+    {
+      "text": "Count like a superhero, 1 2 3!",
+      "inSeconds": 53.0,
+      "outSeconds": 57.17,
+      "section": "chorus"
+    },
+    {
+      "text": "Count like a superhero, strong and free!",
+      "inSeconds": 57.17,
+      "outSeconds": 61.34,
+      "section": "chorus"
+    },
+    {
+      "text": "4 5 6 7 8 9 10!",
+      "inSeconds": 61.34,
+      "outSeconds": 65.52,
+      "section": "chorus"
+    },
+    {
+      "text": "Superheroes, let's count again!",
+      "inSeconds": 65.52,
+      "outSeconds": 67.9,
+      "section": "chorus"
+    },
+    {
+      "text": "Eleven! Twelve! We keep on going!",
+      "inSeconds": 67.9,
+      "outSeconds": 72.17,
+      "section": "verse"
+    },
+    {
+      "text": "Thirteen! Fourteen! Our power's growing!",
+      "inSeconds": 72.17,
+      "outSeconds": 75.72,
+      "section": "verse"
+    },
+    {
+      "text": "Fifteen! Sixteen! We're getting stronger!",
+      "inSeconds": 75.72,
+      "outSeconds": 79.28,
+      "section": "verse"
+    },
+    {
+      "text": "Seventeen! Eighteen! Count a little longer!",
+      "inSeconds": 79.28,
+      "outSeconds": 83.55,
+      "section": "verse"
+    },
+    {
+      "text": "Nineteen! Twenty! We did it today!",
+      "inSeconds": 83.55,
+      "outSeconds": 87.82,
+      "section": "verse"
+    },
+    {
+      "text": "Superheroes counted all the way!",
+      "inSeconds": 87.82,
+      "outSeconds": 91.37,
+      "section": "verse"
+    },
+    {
+      "text": "1 2 3 4 5 6 7 8 9 10!",
+      "inSeconds": 91.37,
+      "outSeconds": 98.49,
+      "section": "outro"
+    },
+    {
+      "text": "11 12 13 14 15 16 17 18 19 20!",
+      "inSeconds": 98.49,
+      "outSeconds": 105.6,
+      "section": "outro"
+    },
+    {
+      "text": "Superheroes can count to twenty! You are a superhero!",
+      "inSeconds": 105.6,
+      "outSeconds": 112.0,
+      "section": "outro"
+    }
+  ],
+  "blockTokens": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    "10",
+    "11",
+    "12",
+    "13",
+    "14",
+    "15",
+    "16",
+    "17",
+    "18",
+    "19",
+    "20"
+  ],
+  "palette": [
+    "#E63946",
+    "#2563EB",
+    "#FFD23F",
+    "#22B14C",
+    "#FF7B00",
+    "#7C3AED"
+  ],
+  "hook": "1 to 20\u2026 GO! \ud83e\uddb8",
+  "endCardAt": 109.5
+}
