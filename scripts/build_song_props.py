@@ -138,6 +138,24 @@ def build_timing(lines, anchors, lead_in, end):
     return out
 
 
+ANIMAL_ASSETS = Path(__file__).resolve().parent.parent / "remotion-composer/src/data/animal-assets.json"
+
+
+def resolve_decor(spec: str):
+    """Decor emoji set. Keywords pull from the cartoon animal manifest;
+    otherwise treat as a comma-separated emoji list."""
+    keys = {"animals", "animals-loops", "animals-alphabet"}
+    if spec in keys and ANIMAL_ASSETS.exists():
+        data = json.loads(ANIMAL_ASSETS.read_text(encoding="utf-8"))
+        if spec == "animals-alphabet":
+            return [a["emoji"] for a in data["alphabet"]]
+        if spec == "animals-loops":
+            return [a["emoji"] for a in data["animatedLoops"]]
+        # "animals": a friendly mixed dozen from the loops + popular picks
+        return [a["emoji"] for a in data["animatedLoops"]] + ["🦁", "🐶", "🐱", "🐰"]
+    return [d.strip() for d in spec.split(",") if d.strip()]
+
+
 def resolve_blocks(spec: str):
     if not spec or spec == "letters":
         return None  # composition default A-Z
@@ -181,7 +199,7 @@ def main():
     if args.card:
         props["cardStyle"] = True
     if args.decor:
-        props["decor"] = [d.strip() for d in args.decor.split(",") if d.strip()]
+        props["decor"] = resolve_decor(args.decor)
 
     out = Path(args.out)
     out.parent.mkdir(parents=True, exist_ok=True)
