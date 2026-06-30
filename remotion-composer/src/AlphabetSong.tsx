@@ -75,6 +75,8 @@ export interface AlphabetSongProps {
   decor?: string[];
   /** Bold top banner hook for Shorts (e.g. "Can YOU count to 20?"). */
   hook?: string;
+  /** Show an end-card ("Full song / Subscribe!") starting at this many seconds. */
+  endCardAt?: number;
 }
 
 const LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
@@ -577,6 +579,46 @@ const HookBanner: React.FC<{ text: string }> = ({ text }) => {
 };
 
 // ---------------------------------------------------------------------------
+// End-card — "Full song / Subscribe!" for the last seconds of a Short
+// ---------------------------------------------------------------------------
+
+const EndCard: React.FC<{ at: number }> = ({ at }) => {
+  const frame = useCurrentFrame();
+  const { fps, width, height } = useVideoConfig();
+  const atFrame = at * fps;
+  if (frame < atFrame) return null;
+  const isVertical = width < 1300;
+  const enter = spring({ frame: frame - atFrame, fps, config: { damping: 12, stiffness: 150, mass: 0.7 } });
+  const scale = interpolate(enter, [0, 1], [0.4, 1]);
+  const scrim = interpolate(enter, [0, 1], [0, 0.45]);
+  const bob = Math.sin(frame / 10) * 5;
+  return (
+    <AbsoluteFill style={{ alignItems: "center", justifyContent: "center", pointerEvents: "none" }}>
+      <AbsoluteFill style={{ background: `rgba(15,23,42,${scrim})` }} />
+      <div
+        style={{
+          transform: `translateY(${bob}px) scale(${scale})`,
+          background: "#FF3B5C",
+          color: "#FFFFFF",
+          borderRadius: 44,
+          border: "10px solid #FFFFFF",
+          padding: isVertical ? "44px 60px" : "36px 60px",
+          textAlign: "center",
+          boxShadow: "0 18px 0 rgba(0,0,0,0.22)",
+        }}
+      >
+        <div style={{ fontFamily: fredoka, fontWeight: 700, fontSize: isVertical ? 96 : 78, lineHeight: 1.0 }}>
+          Full song 👆
+        </div>
+        <div style={{ fontFamily: fredoka, fontWeight: 700, fontSize: isVertical ? 84 : 66, color: "#FFE05A", marginTop: 12 }}>
+          Subscribe! 🔔
+        </div>
+      </div>
+    </AbsoluteFill>
+  );
+};
+
+// ---------------------------------------------------------------------------
 // Main composition
 // ---------------------------------------------------------------------------
 
@@ -589,6 +631,7 @@ export const AlphabetSong: React.FC<AlphabetSongProps> = ({
   cardStyle,
   decor,
   hook,
+  endCardAt,
 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
@@ -616,6 +659,7 @@ export const AlphabetSong: React.FC<AlphabetSongProps> = ({
       ))}
       {title && !hook ? <TitleCard title={title} until={Math.max(0.1, firstLyricIn - 0.2)} /> : null}
       {hook ? <HookBanner text={hook} /> : null}
+      {typeof endCardAt === "number" ? <EndCard at={endCardAt} /> : null}
     </AbsoluteFill>
   );
 };

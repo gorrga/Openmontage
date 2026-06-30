@@ -177,5 +177,6 @@
     "#FF7B00",
     "#7C3AED"
   ],
-  "hook": "Can YOU count to 20? \ud83e\uddb8"
+  "hook": "Can YOU count to 20? \ud83e\uddb8",
+  "endCardAt": 40.5
 }
