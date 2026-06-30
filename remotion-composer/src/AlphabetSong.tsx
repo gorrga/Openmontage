@@ -69,6 +69,10 @@ export interface AlphabetSongProps {
   blockTokens?: string[];
   /** Accent colors for blocks, confetti, and leading words. Defaults to bright primary. */
   palette?: string[];
+  /** Render each lyric line on a high-contrast flashcard (great for sight words). */
+  cardStyle?: boolean;
+  /** Emoji sprinkled as pop-ups for extra energy (animals/fun pictures). */
+  decor?: string[];
 }
 
 const LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
@@ -328,6 +332,59 @@ const Confetti: React.FC<{ boost: number; palette: string[] }> = ({ boost, palet
 };
 
 // ---------------------------------------------------------------------------
+// Emoji pop-ups — animals / fun pictures that bounce in around the edges
+// ---------------------------------------------------------------------------
+
+const EmojiPopups: React.FC<{ emojis: string[] }> = ({ emojis }) => {
+  const frame = useCurrentFrame();
+  const { fps, width, height } = useVideoConfig();
+  if (!emojis.length) return null;
+  const count = 8;
+  return (
+    <AbsoluteFill style={{ pointerEvents: "none" }}>
+      {Array.from({ length: count }, (_, i) => {
+        const emoji = emojis[i % emojis.length];
+        const x = (seededRandom(i * 7 + 1) * (width - 220)) + 40;
+        // Keep emoji out of the central lyric band: top strip or bottom strip.
+        const top = i % 2 === 0;
+        const y = top
+          ? height * (0.06 + seededRandom(i * 13 + 2) * 0.14)
+          : height * (0.7 + seededRandom(i * 13 + 2) * 0.18);
+        const size = 90 + seededRandom(i * 17 + 4) * 60;
+        const cycleLen = Math.round(fps * (3.0 + seededRandom(i * 23 + 8) * 2.5));
+        const offset = Math.round(seededRandom(i * 29 + 9) * cycleLen);
+        const c = ((frame - offset) % cycleLen + cycleLen) % cycleLen;
+        // pop in, hold, pop out
+        const appear = spring({ frame: c, fps, config: { damping: 9, stiffness: 170, mass: 0.6 } });
+        const out = interpolate(c, [cycleLen * 0.62, cycleLen * 0.8], [1, 0], {
+          extrapolateLeft: "clamp",
+          extrapolateRight: "clamp",
+        });
+        const scale = interpolate(appear, [0, 1], [0, 1]) * out;
+        if (scale <= 0.01) return null;
+        const wobble = Math.sin((frame + i * 9) / 6) * 6;
+        return (
+          <div
+            key={i}
+            style={{
+              position: "absolute",
+              left: x,
+              top: y,
+              fontSize: size,
+              lineHeight: 1,
+              transform: `scale(${scale}) rotate(${wobble}deg)`,
+              filter: "drop-shadow(0 6px 6px rgba(0,0,0,0.18))",
+            }}
+          >
+            {emoji}
+          </div>
+        );
+      })}
+    </AbsoluteFill>
+  );
+};
+
+// ---------------------------------------------------------------------------
 // Lyric line — big bold rounded text, thick dark outline, pop-in per word
 // ---------------------------------------------------------------------------
 
@@ -335,7 +392,12 @@ const OUTLINE =
   "-4px -4px 0 #1b2a4a, 4px -4px 0 #1b2a4a, -4px 4px 0 #1b2a4a, 4px 4px 0 #1b2a4a," +
   "0px -5px 0 #1b2a4a, 0px 5px 0 #1b2a4a, -5px 0px 0 #1b2a4a, 5px 0px 0 #1b2a4a";
 
-const LyricLine: React.FC<{ lyric: KidLyric; index: number; palette: string[] }> = ({ lyric, index, palette }) => {
+const LyricLine: React.FC<{ lyric: KidLyric; index: number; palette: string[]; cardStyle: boolean }> = ({
+  lyric,
+  index,
+  palette,
+  cardStyle,
+}) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const inFrame = lyric.inSeconds * fps;
@@ -353,22 +415,33 @@ const LyricLine: React.FC<{ lyric: KidLyric; index: number; palette: string[] }>
   const fontSize = isChorus ? 132 : isBig ? 96 : 116;
   const lineColor = isChorus ? "#FFE05A" : "#FFFFFF";
 
-  // Whole-line pop-in (native text layout handles spacing/wrapping reliably).
+  // Bouncy whole-line pop-in (native text layout handles spacing/wrapping).
   const pop = spring({
     frame: frame - inFrame,
     fps,
-    config: { damping: 12, stiffness: 170, mass: 0.7 },
+    config: { damping: 9, stiffness: 200, mass: 0.7 },
   });
-  const scale = interpolate(pop, [0, 1], [0.55, 1]);
-  const rise = interpolate(pop, [0, 1], [50, 0]);
+  const scale = interpolate(pop, [0, 1], [0.4, 1]);
+  const rise = interpolate(pop, [0, 1], [60, 0]);
+  const wiggle = Math.sin((frame - inFrame) / 9) * 1.2; // gentle energy
   const fadeIn = interpolate(frame, [inFrame - 2, inFrame + 4], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
 
-  // Color the leading letter of "X is for ..." lines (alphabet songs).
-  const hasLeadLetter = words.length > 2 && /^[A-Z]$/.test(words[0]);
+  // Color the leading token of "X - ..." / "X is for ..." lines.
+  const hasLeadLetter = words.length > 2 && /^[A-Za-z]+$/.test(words[0]) && words[0].length <= 3 && words[1] === "-";
   const leadColor = palette[index % palette.length];
+  const cardBorder = isChorus ? "#FFC93C" : palette[index % palette.length];
+
+  const textNode = hasLeadLetter ? (
+    <>
+      <span style={{ color: cardStyle ? leadColor : leadColor }}>{words[0]}</span>
+      {" " + words.slice(1).join(" ")}
+    </>
+  ) : (
+    lyric.text
+  );
 
   return (
     <AbsoluteFill
@@ -379,28 +452,48 @@ const LyricLine: React.FC<{ lyric: KidLyric; index: number; palette: string[] }>
         padding: "0 120px",
       }}
     >
-      <div
-        style={{
-          fontFamily: fredoka,
-          fontWeight: 700,
-          fontSize,
-          lineHeight: 1.1,
-          color: lineColor,
-          textShadow: OUTLINE,
-          maxWidth: 1640,
-          textAlign: "center",
-          transform: `translateY(${rise}px) scale(${scale})`,
-        }}
-      >
-        {hasLeadLetter ? (
-          <>
-            <span style={{ color: leadColor }}>{words[0]}</span>
-            {" " + words.slice(1).join(" ")}
-          </>
-        ) : (
-          lyric.text
-        )}
-      </div>
+      {cardStyle ? (
+        <div
+          style={{
+            background: "#FFFFFF",
+            border: `12px solid ${cardBorder}`,
+            borderRadius: 36,
+            padding: "34px 64px",
+            maxWidth: 1560,
+            textAlign: "center",
+            boxShadow: "0 18px 0 rgba(0,0,0,0.12), 0 0 0 6px rgba(255,255,255,0.6)",
+            transform: `translateY(${rise}px) scale(${scale}) rotate(${wiggle}deg)`,
+          }}
+        >
+          <div
+            style={{
+              fontFamily: fredoka,
+              fontWeight: 700,
+              fontSize: Math.round(fontSize * 0.86),
+              lineHeight: 1.08,
+              color: "#1b2a4a",
+            }}
+          >
+            {textNode}
+          </div>
+        </div>
+      ) : (
+        <div
+          style={{
+            fontFamily: fredoka,
+            fontWeight: 700,
+            fontSize,
+            lineHeight: 1.1,
+            color: lineColor,
+            textShadow: OUTLINE,
+            maxWidth: 1640,
+            textAlign: "center",
+            transform: `translateY(${rise}px) scale(${scale}) rotate(${wiggle}deg)`,
+          }}
+        >
+          {textNode}
+        </div>
+      )}
     </AbsoluteFill>
   );
 };
@@ -451,6 +544,8 @@ export const AlphabetSong: React.FC<AlphabetSongProps> = ({
   lyrics,
   blockTokens,
   palette,
+  cardStyle,
+  decor,
 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
@@ -463,7 +558,7 @@ export const AlphabetSong: React.FC<AlphabetSongProps> = ({
   const inChorus = lyrics.some(
     (l) => l.section === "chorus" && tSec >= l.inSeconds - 0.3 && tSec <= l.outSeconds + 0.3
   );
-  const boost = inChorus ? 1 : 0.25;
+  const boost = inChorus ? 1 : 0.5;
 
   const firstLyricIn = lyrics.length ? lyrics[0].inSeconds : 0;
 
@@ -471,9 +566,10 @@ export const AlphabetSong: React.FC<AlphabetSongProps> = ({
     <AbsoluteFill style={{ backgroundColor: "#4FB7F0" }}>
       {audioSrc ? <Audio src={resolveAsset(audioSrc)} /> : null}
       <Background tokens={tokens} palette={pal} />
+      {decor && decor.length ? <EmojiPopups emojis={decor} /> : null}
       <Confetti boost={boost} palette={pal} />
       {lyrics.map((l, i) => (
-        <LyricLine key={i} lyric={l} index={i} palette={pal} />
+        <LyricLine key={i} lyric={l} index={i} palette={pal} cardStyle={!!cardStyle} />
       ))}
       {title ? <TitleCard title={title} until={Math.max(0.1, firstLyricIn - 0.2)} /> : null}
     </AbsoluteFill>

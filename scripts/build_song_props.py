@@ -160,6 +160,8 @@ def main():
     ap.add_argument("--end", type=float, required=True, help="End of singing (seconds), e.g. the analyze tail.")
     ap.add_argument("--blocks", default="letters", help="letters | numbers20 | numbers10 | digits | comma,list")
     ap.add_argument("--palette", default="primary", help="primary | superhero | pastel | candy")
+    ap.add_argument("--card", action="store_true", help="Render lyric lines on high-contrast flashcards.")
+    ap.add_argument("--decor", default="", help="Comma-separated emoji to sprinkle as pop-ups.")
     ap.add_argument("--out", required=True)
     args = ap.parse_args()
 
@@ -176,6 +178,10 @@ def main():
         props["blockTokens"] = blocks
     if args.palette in PALETTES and args.palette != "primary":
         props["palette"] = PALETTES[args.palette]
+    if args.card:
+        props["cardStyle"] = True
+    if args.decor:
+        props["decor"] = [d.strip() for d in args.decor.split(",") if d.strip()]
 
     out = Path(args.out)
     out.parent.mkdir(parents=True, exist_ok=True)
