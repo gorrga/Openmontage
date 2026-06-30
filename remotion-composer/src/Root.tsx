@@ -325,6 +325,20 @@ export const Root: React.FC = () => {
         calculateMetadata={calculateAlphabetMetadata}
       />
       <Composition
+        id="AlphabetSongVertical"
+        component={AlphabetSong}
+        durationInFrames={30 * 150}
+        fps={30}
+        width={1080}
+        height={1920}
+        defaultProps={{
+          audioSrc: "",
+          title: "",
+          lyrics: [],
+        } as AlphabetSongProps}
+        calculateMetadata={calculateAlphabetMetadata}
+      />
+      <Composition
         id="AlphabetThumbnail"
         component={AlphabetThumbnail}
         durationInFrames={1}

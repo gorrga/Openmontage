@@ -73,6 +73,8 @@ export interface AlphabetSongProps {
   cardStyle?: boolean;
   /** Emoji sprinkled as pop-ups for extra energy (animals/fun pictures). */
   decor?: string[];
+  /** Bold top banner hook for Shorts (e.g. "Can YOU count to 20?"). */
+  hook?: string;
 }
 
 const LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
@@ -399,7 +401,7 @@ const LyricLine: React.FC<{ lyric: KidLyric; index: number; palette: string[]; c
   cardStyle,
 }) => {
   const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
+  const { fps, width } = useVideoConfig();
   const inFrame = lyric.inSeconds * fps;
   const outFrame = lyric.outSeconds * fps;
   if (frame < inFrame - 2 || frame > outFrame + 6) return null;
@@ -409,11 +411,14 @@ const LyricLine: React.FC<{ lyric: KidLyric; index: number; palette: string[]; c
     extrapolateRight: "clamp",
   });
 
+  const isVertical = width < 1300;
   const words = lyric.text.split(" ");
   const isChorus = lyric.section === "chorus";
   const isBig = lyric.section === "intro" || lyric.section === "outro";
-  const fontSize = isChorus ? 132 : isBig ? 96 : 116;
+  const baseSize = isChorus ? 132 : isBig ? 96 : 116;
+  const fontSize = isVertical ? Math.round(baseSize * 0.92) : baseSize;
   const lineColor = isChorus ? "#FFE05A" : "#FFFFFF";
+  const maxTextWidth = Math.min(1640, width - (isVertical ? 70 : 120));
 
   // Bouncy whole-line pop-in (native text layout handles spacing/wrapping).
   const pop = spring({
@@ -449,7 +454,7 @@ const LyricLine: React.FC<{ lyric: KidLyric; index: number; palette: string[]; c
         alignItems: "center",
         justifyContent: "center",
         opacity: fadeOut * fadeIn,
-        padding: "0 120px",
+        padding: isVertical ? "0 40px" : "0 120px",
       }}
     >
       {cardStyle ? (
@@ -458,8 +463,8 @@ const LyricLine: React.FC<{ lyric: KidLyric; index: number; palette: string[]; c
             background: "#FFFFFF",
             border: `12px solid ${cardBorder}`,
             borderRadius: 36,
-            padding: "34px 64px",
-            maxWidth: 1560,
+            padding: isVertical ? "28px 40px" : "34px 64px",
+            maxWidth: maxTextWidth,
             textAlign: "center",
             boxShadow: "0 18px 0 rgba(0,0,0,0.12), 0 0 0 6px rgba(255,255,255,0.6)",
             transform: `translateY(${rise}px) scale(${scale}) rotate(${wiggle}deg)`,
@@ -486,7 +491,7 @@ const LyricLine: React.FC<{ lyric: KidLyric; index: number; palette: string[]; c
             lineHeight: 1.1,
             color: lineColor,
             textShadow: OUTLINE,
-            maxWidth: 1640,
+            maxWidth: maxTextWidth,
             textAlign: "center",
             transform: `translateY(${rise}px) scale(${scale}) rotate(${wiggle}deg)`,
           }}
@@ -535,6 +540,43 @@ const TitleCard: React.FC<{ title: string; until: number }> = ({ title, until })
 };
 
 // ---------------------------------------------------------------------------
+// Hook banner — bold top pill for Shorts ("Can YOU count to 20?")
+// ---------------------------------------------------------------------------
+
+const HookBanner: React.FC<{ text: string }> = ({ text }) => {
+  const frame = useCurrentFrame();
+  const { fps, width } = useVideoConfig();
+  const enter = spring({ frame, fps, config: { damping: 11, stiffness: 160, mass: 0.7 } });
+  const scale = interpolate(enter, [0, 1], [0.4, 1]);
+  const bob = Math.sin(frame / 12) * 6;
+  const isVertical = width < 1300;
+  return (
+    <AbsoluteFill style={{ alignItems: "center", justifyContent: "flex-start", pointerEvents: "none" }}>
+      <div
+        style={{
+          marginTop: isVertical ? 150 : 60,
+          transform: `translateY(${bob}px) scale(${scale}) rotate(-2deg)`,
+          background: "#FF3B5C",
+          color: "#FFFFFF",
+          fontFamily: fredoka,
+          fontWeight: 700,
+          fontSize: isVertical ? 78 : 64,
+          padding: isVertical ? "18px 46px" : "16px 44px",
+          borderRadius: 999,
+          border: "8px solid #FFFFFF",
+          boxShadow: "0 12px 0 rgba(0,0,0,0.18)",
+          textShadow: "0 3px 0 rgba(0,0,0,0.25)",
+          maxWidth: width - 80,
+          textAlign: "center",
+        }}
+      >
+        {text}
+      </div>
+    </AbsoluteFill>
+  );
+};
+
+// ---------------------------------------------------------------------------
 // Main composition
 // ---------------------------------------------------------------------------
 
@@ -546,6 +588,7 @@ export const AlphabetSong: React.FC<AlphabetSongProps> = ({
   palette,
   cardStyle,
   decor,
+  hook,
 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
@@ -571,7 +614,8 @@ export const AlphabetSong: React.FC<AlphabetSongProps> = ({
       {lyrics.map((l, i) => (
         <LyricLine key={i} lyric={l} index={i} palette={pal} cardStyle={!!cardStyle} />
       ))}
-      {title ? <TitleCard title={title} until={Math.max(0.1, firstLyricIn - 0.2)} /> : null}
+      {title && !hook ? <TitleCard title={title} until={Math.max(0.1, firstLyricIn - 0.2)} /> : null}
+      {hook ? <HookBanner text={hook} /> : null}
     </AbsoluteFill>
   );
 };
