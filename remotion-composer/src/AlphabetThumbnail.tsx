@@ -20,6 +20,7 @@ export interface AlphabetThumbnailProps {
   blockTokens?: string[]; // scattered background blocks; defaults to A–Z
   bgTop?: string;
   bgBottom?: string;
+  scatterEmoji?: string[]; // if set, scatter these emoji (varied sizes) instead of letter blocks
 }
 
 const LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
@@ -69,9 +70,11 @@ export const AlphabetThumbnail: React.FC<AlphabetThumbnailProps> = ({
   blockTokens,
   bgTop = "#FFD23F",
   bgBottom = "#FFB02E",
+  scatterEmoji,
 }) => {
   const { width, height } = useVideoConfig();
   const tokens = blockTokens && blockTokens.length ? blockTokens : LETTERS;
+  const useEmoji = !!(scatterEmoji && scatterEmoji.length);
   const scatter = Array.from({ length: 10 }, (_, i) => ({
     letter: tokens[Math.floor(rand(i * 5 + 1) * tokens.length)],
     color: PALETTE[i % PALETTE.length],
@@ -80,6 +83,18 @@ export const AlphabetThumbnail: React.FC<AlphabetThumbnailProps> = ({
     size: 70 + rand(i * 13 + 4) * 40,
     rot: rand(i * 17 + 5) * 40 - 20,
   }));
+  // Animal scatter: more of them, with big/small size variation.
+  const emojiScatter = Array.from({ length: 16 }, (_, i) => {
+    const big = i % 3 === 0;
+    return {
+      emoji: (scatterEmoji || [])[i % Math.max(1, (scatterEmoji || []).length)],
+      x: rand(i * 7 + 2) * (width - 140),
+      y: rand(i * 11 + 3) * (height - 140),
+      size: big ? 150 + rand(i * 13 + 4) * 90 : 64 + rand(i * 19 + 6) * 56,
+      rot: rand(i * 17 + 5) * 36 - 18,
+    };
+  });
+  const heroIsText = /[A-Za-z0-9]/.test(hero);
   const heroFontSize = hero.length > 1 ? 340 : 460;
 
   return (
@@ -111,59 +126,79 @@ export const AlphabetThumbnail: React.FC<AlphabetThumbnailProps> = ({
         </div>
       </AbsoluteFill>
 
-      {/* scattered alphabet blocks around the edges */}
-      {scatter.map((b, i) => (
-        <Block key={i} {...b} />
-      ))}
+      {/* scattered art: animal emoji (varied sizes) or letter blocks */}
+      {useEmoji
+        ? emojiScatter.map((e, i) => (
+            <div
+              key={i}
+              style={{
+                position: "absolute",
+                left: e.x,
+                top: e.y,
+                fontSize: e.size,
+                lineHeight: 1,
+                transform: `rotate(${e.rot}deg)`,
+                filter: "drop-shadow(0 8px 8px rgba(0,0,0,0.2))",
+              }}
+            >
+              {e.emoji}
+            </div>
+          ))
+        : scatter.map((b, i) => <Block key={i} {...b} />)}
 
-      {/* giant smiling hero character on the right */}
-      <div style={{ position: "absolute", right: 60, top: 120 }}>
-        <div
-          style={{
-            fontFamily: fredoka,
-            fontWeight: 700,
-            fontSize: heroFontSize,
-            color: heroColor,
-            textShadow: OUTLINE,
-            lineHeight: 0.9,
-            position: "relative",
-          }}
-        >
-          {hero}
-          {/* friendly face — eyes + smile. For multi-char heroes it sits on the
-              last glyph (e.g. the "0" in "20") rather than across the gap. */}
+      {/* giant hero on the right — letter/number gets a drawn face;
+          an emoji hero (e.g. a lion) is rendered big as-is. */}
+      <div style={{ position: "absolute", right: 60, top: 140 }}>
+        {heroIsText ? (
           <div
             style={{
-              position: "absolute",
-              left: 0,
-              right: 0,
-              top: heroFontSize * 0.33,
-              display: "flex",
-              justifyContent: "center",
-              gap: 22,
-              transform: `translateX(${hero.length > 1 ? heroFontSize * 0.27 : 0}px)`,
+              fontFamily: fredoka,
+              fontWeight: 700,
+              fontSize: heroFontSize,
+              color: heroColor,
+              textShadow: OUTLINE,
+              lineHeight: 0.9,
+              position: "relative",
             }}
           >
-            <div style={{ width: 32, height: 32, borderRadius: "50%", background: "#1b2a4a" }} />
-            <div style={{ width: 32, height: 32, borderRadius: "50%", background: "#1b2a4a" }} />
+            {hero}
+            <div
+              style={{
+                position: "absolute",
+                left: 0,
+                right: 0,
+                top: heroFontSize * 0.33,
+                display: "flex",
+                justifyContent: "center",
+                gap: 22,
+                transform: `translateX(${hero.length > 1 ? heroFontSize * 0.27 : 0}px)`,
+              }}
+            >
+              <div style={{ width: 32, height: 32, borderRadius: "50%", background: "#1b2a4a" }} />
+              <div style={{ width: 32, height: 32, borderRadius: "50%", background: "#1b2a4a" }} />
+            </div>
+            <div
+              style={{
+                position: "absolute",
+                left: 0,
+                right: 0,
+                top: heroFontSize * 0.45,
+                margin: "0 auto",
+                width: 84,
+                height: 42,
+                borderBottomLeftRadius: 84,
+                borderBottomRightRadius: 84,
+                border: "10px solid #1b2a4a",
+                borderTop: "none",
+                transform: `translateX(${hero.length > 1 ? heroFontSize * 0.27 : 0}px)`,
+              }}
+            />
           </div>
-          <div
-            style={{
-              position: "absolute",
-              left: 0,
-              right: 0,
-              top: heroFontSize * 0.45,
-              margin: "0 auto",
-              width: 84,
-              height: 42,
-              borderBottomLeftRadius: 84,
-              borderBottomRightRadius: 84,
-              border: "10px solid #1b2a4a",
-              borderTop: "none",
-              transform: `translateX(${hero.length > 1 ? heroFontSize * 0.27 : 0}px)`,
-            }}
-          />
-        </div>
+        ) : (
+          <div style={{ fontSize: 460, lineHeight: 0.9, filter: "drop-shadow(0 14px 12px rgba(0,0,0,0.28))" }}>
+            {hero}
+          </div>
+        )}
       </div>
 
       {/* main title text, lower-left */}

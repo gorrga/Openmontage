@@ -156,6 +156,30 @@ def resolve_decor(spec: str):
     return [d.strip() for d in spec.split(",") if d.strip()]
 
 
+def enrich_animal_labels(lines):
+    """Append the matching animal emoji after each animal name in the lyric
+    text (display only), e.g. 'A is for Alligator' -> 'A is for Alligator 🐊'."""
+    if not ANIMAL_ASSETS.exists():
+        return lines
+    data = json.loads(ANIMAL_ASSETS.read_text(encoding="utf-8"))
+    pairs = [(a["name"], a["emoji"]) for a in data["alphabet"]]
+    # Longest names first so "Queen Bee" / "X-ray Fish" win over substrings.
+    pairs.sort(key=lambda p: -len(p[0]))
+    out = []
+    for text, sec in lines:
+        new = text
+        for name, emoji in pairs:
+            if emoji in new:
+                continue
+            pat = re.compile(r"\b" + re.escape(name) + r"\b", re.IGNORECASE)
+            m = pat.search(new)
+            if m:
+                new = new[: m.end()] + " " + emoji + new[m.end():]
+                break  # one animal per line
+        out.append((new, sec))
+    return out
+
+
 def resolve_blocks(spec: str):
     if not spec or spec == "letters":
         return None  # composition default A-Z
@@ -179,11 +203,14 @@ def main():
     ap.add_argument("--blocks", default="letters", help="letters | numbers20 | numbers10 | digits | comma,list")
     ap.add_argument("--palette", default="primary", help="primary | superhero | pastel | candy")
     ap.add_argument("--card", action="store_true", help="Render lyric lines on high-contrast flashcards.")
-    ap.add_argument("--decor", default="", help="Comma-separated emoji to sprinkle as pop-ups.")
+    ap.add_argument("--decor", default="", help="Emoji pop-ups: comma list, or animals/animals-loops/animals-alphabet.")
+    ap.add_argument("--animal-emoji", action="store_true", help="Append the matching animal emoji after animal names in lyric text.")
     ap.add_argument("--out", required=True)
     args = ap.parse_args()
 
     lines = parse_lyrics(Path(args.lyrics).read_text(encoding="utf-8"))
+    if args.animal_emoji:
+        lines = enrich_animal_labels(lines)
     anchors = {}
     if args.anchors and Path(args.anchors).exists():
         anchors = parse_anchors(Path(args.anchors).read_text(encoding="utf-8"), lines)

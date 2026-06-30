@@ -1,0 +1,311 @@
+{
+  "audioSrc": "song/animals-a-to-z.mp3",
+  "title": "",
+  "lyrics": [
+    {
+      "text": "Get ready to meet the animals — from A all the way to Z! Here we go!",
+      "inSeconds": 0.5,
+      "outSeconds": 8.74,
+      "section": "intro"
+    },
+    {
+      "text": "A is for Alligator 🐊 — snap, snap, snap!",
+      "inSeconds": 8.74,
+      "outSeconds": 13.1,
+      "section": "verse"
+    },
+    {
+      "text": "B is for Bear 🐻 — give a great big clap!",
+      "inSeconds": 13.1,
+      "outSeconds": 18.42,
+      "section": "verse"
+    },
+    {
+      "text": "C is for Cat 🐱 — meow, meow, meow!",
+      "inSeconds": 18.42,
+      "outSeconds": 22.78,
+      "section": "verse"
+    },
+    {
+      "text": "D is for Dog 🐶 — take a doggy bow!",
+      "inSeconds": 22.78,
+      "outSeconds": 27.63,
+      "section": "verse"
+    },
+    {
+      "text": "E is for Elephant 🐘 — stomp the ground!",
+      "inSeconds": 27.63,
+      "outSeconds": 31.99,
+      "section": "verse"
+    },
+    {
+      "text": "F is for Fox 🦊 — spin around!",
+      "inSeconds": 31.99,
+      "outSeconds": 35.86,
+      "section": "verse"
+    },
+    {
+      "text": "Animals, animals, A to Z!",
+      "inSeconds": 35.86,
+      "outSeconds": 38.29,
+      "section": "chorus"
+    },
+    {
+      "text": "Stomp and roar and sing with me!",
+      "inSeconds": 38.29,
+      "outSeconds": 41.68,
+      "section": "chorus"
+    },
+    {
+      "text": "Furry, feathery, big and small —",
+      "inSeconds": 41.68,
+      "outSeconds": 44.58,
+      "section": "chorus"
+    },
+    {
+      "text": "We love animals, one and all!",
+      "inSeconds": 44.58,
+      "outSeconds": 47.49,
+      "section": "chorus"
+    },
+    {
+      "text": "G is for Giraffe 🦒 — stretch up high!",
+      "inSeconds": 47.49,
+      "outSeconds": 51.85,
+      "section": "verse"
+    },
+    {
+      "text": "H is for Horse 🐴 — gallop on by!",
+      "inSeconds": 51.85,
+      "outSeconds": 56.21,
+      "section": "verse"
+    },
+    {
+      "text": "I is for Iguana 🦎 — wiggle slow!",
+      "inSeconds": 56.21,
+      "outSeconds": 60.09,
+      "section": "verse"
+    },
+    {
+      "text": "J is for Jellyfish 🪼 — float and flow!",
+      "inSeconds": 60.09,
+      "outSeconds": 64.45,
+      "section": "verse"
+    },
+    {
+      "text": "K is for Koala 🐨 — hug a tree!",
+      "inSeconds": 64.45,
+      "outSeconds": 68.81,
+      "section": "verse"
+    },
+    {
+      "text": "L is for Lion 🦁 — roar with me!",
+      "inSeconds": 68.81,
+      "outSeconds": 73.17,
+      "section": "verse"
+    },
+    {
+      "text": "Animals, animals, A to Z!",
+      "inSeconds": 73.17,
+      "outSeconds": 75.59,
+      "section": "chorus"
+    },
+    {
+      "text": "Stomp and roar and sing with me!",
+      "inSeconds": 75.59,
+      "outSeconds": 78.98,
+      "section": "chorus"
+    },
+    {
+      "text": "Furry, feathery, big and small —",
+      "inSeconds": 78.98,
+      "outSeconds": 81.89,
+      "section": "chorus"
+    },
+    {
+      "text": "We love animals, one and all!",
+      "inSeconds": 81.89,
+      "outSeconds": 84.79,
+      "section": "chorus"
+    },
+    {
+      "text": "M is for Monkey 🐵 — jump and play!",
+      "inSeconds": 84.79,
+      "outSeconds": 89.15,
+      "section": "verse"
+    },
+    {
+      "text": "N is for Nightingale 🐦 — sing all day!",
+      "inSeconds": 89.15,
+      "outSeconds": 93.51,
+      "section": "verse"
+    },
+    {
+      "text": "O is for Owl 🦉 — whoo, whoo, whoo!",
+      "inSeconds": 93.51,
+      "outSeconds": 97.87,
+      "section": "verse"
+    },
+    {
+      "text": "P is for Penguin 🐧 — waddle too!",
+      "inSeconds": 97.87,
+      "outSeconds": 101.75,
+      "section": "verse"
+    },
+    {
+      "text": "Q is for Queen Bee 🐝 — buzz, buzz, buzz!",
+      "inSeconds": 101.75,
+      "outSeconds": 106.59,
+      "section": "verse"
+    },
+    {
+      "text": "R is for Rabbit 🐰 — hop, just because!",
+      "inSeconds": 106.59,
+      "outSeconds": 110.95,
+      "section": "verse"
+    },
+    {
+      "text": "Animals, animals, A to Z!",
+      "inSeconds": 110.95,
+      "outSeconds": 113.37,
+      "section": "chorus"
+    },
+    {
+      "text": "Stomp and roar and sing with me!",
+      "inSeconds": 113.37,
+      "outSeconds": 116.77,
+      "section": "chorus"
+    },
+    {
+      "text": "Furry, feathery, big and small —",
+      "inSeconds": 116.77,
+      "outSeconds": 119.67,
+      "section": "chorus"
+    },
+    {
+      "text": "We love animals, one and all!",
+      "inSeconds": 119.67,
+      "outSeconds": 122.58,
+      "section": "chorus"
+    },
+    {
+      "text": "S is for Snake 🐍 — slither low!",
+      "inSeconds": 122.58,
+      "outSeconds": 126.45,
+      "section": "verse"
+    },
+    {
+      "text": "T is for Tiger 🐯 — grrr, let's go!",
+      "inSeconds": 126.45,
+      "outSeconds": 130.81,
+      "section": "verse"
+    },
+    {
+      "text": "U is for Unicorn 🦄 — magic and bright!",
+      "inSeconds": 130.81,
+      "outSeconds": 135.17,
+      "section": "verse"
+    },
+    {
+      "text": "V is for Vulture 🦅 — soaring in flight!",
+      "inSeconds": 135.17,
+      "outSeconds": 139.53,
+      "section": "verse"
+    },
+    {
+      "text": "W is for Whale 🐳 — splash in the sea!",
+      "inSeconds": 139.53,
+      "outSeconds": 144.38,
+      "section": "verse"
+    },
+    {
+      "text": "X is for X-ray Fish 🐠 — swimming free!",
+      "inSeconds": 144.38,
+      "outSeconds": 148.74,
+      "section": "verse"
+    },
+    {
+      "text": "Y is for Yak 🐂 — way up high!",
+      "inSeconds": 148.74,
+      "outSeconds": 153.1,
+      "section": "verse"
+    },
+    {
+      "text": "Z is for Zebra 🦓 — stripes go by!",
+      "inSeconds": 153.1,
+      "outSeconds": 157.46,
+      "section": "verse"
+    },
+    {
+      "text": "We met them all, from A to Z —",
+      "inSeconds": 157.46,
+      "outSeconds": 161.82,
+      "section": "verse"
+    },
+    {
+      "text": "Give yourself a clap, you and me!",
+      "inSeconds": 161.82,
+      "outSeconds": 165.21,
+      "section": "verse"
+    },
+    {
+      "text": "A B C D E F G — all the animals, can't you see?",
+      "inSeconds": 165.21,
+      "outSeconds": 171.99,
+      "section": "outro"
+    },
+    {
+      "text": "H I J K L M N — let's all sing it once again!",
+      "inSeconds": 171.99,
+      "outSeconds": 178.77,
+      "section": "outro"
+    },
+    {
+      "text": "O P Q R S T U, V W X Y Z too!",
+      "inSeconds": 178.77,
+      "outSeconds": 185.07,
+      "section": "outro"
+    },
+    {
+      "text": "Animals from A to Z — we love them all, hooray!",
+      "inSeconds": 185.07,
+      "outSeconds": 190.4,
+      "section": "outro"
+    }
+  ],
+  "decor": [
+    "🐊",
+    "🐻",
+    "🦋",
+    "🐱",
+    "🐮",
+    "🐶",
+    "🐘",
+    "🦊",
+    "🦒",
+    "🐴",
+    "🦎",
+    "🪼",
+    "🐨",
+    "🦘",
+    "🦁",
+    "🐵",
+    "🐦",
+    "🦉",
+    "🐙",
+    "🐧",
+    "🐝",
+    "🐰",
+    "🐍",
+    "🐯",
+    "🐢",
+    "🦄",
+    "🦅",
+    "🐳",
+    "🐠",
+    "🐂",
+    "🦓"
+  ],
+  "hook": "Sing all 26 animals! 🐯",
+  "endCardAt": 187.9
+}
